@@ -1079,6 +1079,10 @@ MonoBehaviour:
   defaultCharDelayTime: 0.07
   isFixedDialogueSfxTiming: 1
   fixedDialogueSfxTiming: 0.05
+  charBasedWave: 1
+  waveSpeed: 2
+  waveExponent: 10
+  waveIntensity: 0.1
   dialoguePanel: {fileID: 856508503}
   characterNameText: {fileID: 613587380}
   dialogueText: {fileID: 1691795330}
