@@ -11,6 +11,7 @@ public class DialogueSystem : MonoBehaviour
     [SerializeField][Tooltip("This is for each line of dialogue in this one dialogue event.")] private string[] dialogueLines;
     [SerializeField][Tooltip("This is for the timing of each dialogue line. Example: for fast, set 0.02f; for slow, set 0.2f.\n\nMake sure this is in sequence with the order of the dialogue lines. If list is empty, system will use default timing.")] private float[] charDelayTimes;
     [SerializeField][Tooltip("This is for what will play when each character of a dialogue line is being printed out.\n\nMake sure this is in sequence with the order of the dialogue lines.")] private AudioClip[] dialogueLineSfx;
+    [SerializeField] private TextEffect[] dialogueTextEffect;
 
     [Header("Dialogue Settings")]
     [SerializeField][Range(0.01f, 0.5f)] private float defaultCharDelayTime;
@@ -26,6 +27,7 @@ public class DialogueSystem : MonoBehaviour
 
     private bool isPrinting = false;
     private int iteration = 0;
+    private bool effectRunning = false;
 
     // Start is called before the first frame update
     void Start()
@@ -59,6 +61,7 @@ public class DialogueSystem : MonoBehaviour
     private IEnumerator PrintDialogue(string characterNameLine, string dialogueLine)
     {
         // Set all the starting values and wipe the strings.
+        effectRunning = false;
         isPrinting = true;
         dialogueText.text = "";
         characterNameText.text = "";
@@ -72,6 +75,15 @@ public class DialogueSystem : MonoBehaviour
         // Set up the dialogue clip and sort the SFX timing based on what isFixedDialogueSfxTiming set to.
         dialogueSfxSource.clip = dialogueLineSfx[iteration];
         if (isFixedDialogueSfxTiming) StartCoroutine(PlaySfxFixed());
+
+        switch (dialogueTextEffect[iteration])
+        {
+            case TextEffect.None:
+                break;
+            case TextEffect.Wavy:
+                StartCoroutine(TextAnimation(TextEffect.Wavy));
+                break;
+        }
 
         // Print out the values to the dialogue box.
         characterNameText.text = dialogueCharacterNames[iteration];
@@ -95,5 +107,45 @@ public class DialogueSystem : MonoBehaviour
             dialogueSfxSource.Play();
             yield return new WaitForSeconds(fixedDialogueSfxTiming);
         }
+    }
+
+    // Thanks to Kemble Software's tutorial for creating this effect: https://youtu.be/FXMqUdP3XcE
+    private IEnumerator TextAnimation(TextEffect effect)
+    {
+        effectRunning = true;
+        while (effectRunning)
+        {
+            dialogueText.ForceMeshUpdate();
+            var textInfo = dialogueText.textInfo;
+
+            for (int i = 0; i < textInfo.characterCount; ++i)
+            {
+                var charInfo = textInfo.characterInfo[i];
+                if (!charInfo.isVisible) continue;
+
+                var verts = textInfo.meshInfo[charInfo.materialReferenceIndex].vertices;
+                for (int j = 0; j < 4; ++j)
+                {
+                    var orig = verts[charInfo.vertexIndex + j];
+                    verts[charInfo.vertexIndex + j] = orig + new Vector3(0, Mathf.Sin(Time.time * 2f + orig.x * 0.01f) * 10f, 0);
+                }
+            }
+
+            for (int i = 0; i < textInfo.meshInfo.Length; ++i)
+            {
+                var meshInfo = textInfo.meshInfo[i];
+                meshInfo.mesh.vertices = meshInfo.vertices;
+                dialogueText.UpdateGeometry(meshInfo.mesh, i);
+            }
+
+            yield return null;
+        }
+        effectRunning = false;
+    }
+
+    private enum TextEffect
+    {
+        None,
+        Wavy
     }
 }
