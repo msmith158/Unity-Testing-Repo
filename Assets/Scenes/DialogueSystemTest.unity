@@ -1068,8 +1068,9 @@ MonoBehaviour:
   - You lose the game by touching the wall while it is not yet dry.
   charDelayTimes:
   - 0.01
-  - 0.02
-  - 0.03
+  - 0.01
+  - 0.01
+  - 0.1
   dialogueLineSfx:
   - {fileID: 8300000, guid: 6b00bd7b373d2cd49865e7e786acaa39, type: 3}
   - {fileID: 8300000, guid: 6b00bd7b373d2cd49865e7e786acaa39, type: 3}
@@ -1077,14 +1078,14 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 6b00bd7b373d2cd49865e7e786acaa39, type: 3}
   dialogueTextEffect: 00000000010000000200000003000000
   dialogueBoxEffect: 
-  defaultCharDelayTime: 0.07
-  isFixedDialogueSfxTiming: 0
+  defaultCharDelayTime: 0.02
+  isFixedDialogueSfxTiming: 1
   fixedDialogueSfxTiming: 0.05
   charBasedWave: 1
   waveSpeed: 2
   waveExponent: 10
   waveIntensity: 0.1
-  shakeMagnitude: 3
+  shakeMagnitude: 2
   charBasedRipple: 1
   rippleSpeed: 7
   rippleExponent: 5

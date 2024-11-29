@@ -7,7 +7,6 @@
     <list default="true" id="6eb8171d-73ca-48b9-8b45-c26631d2f8fc" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Unity-Testing-Repo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Unity-Testing-Repo/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/DialogueSystemTest.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/DialogueSystemTest.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/DialogueSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/DialogueSystem.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +91,7 @@
       <updated>1732797708498</updated>
       <workItem from="1732797710570" duration="2362000" />
       <workItem from="1732800106557" duration="7923000" />
-      <workItem from="1732854638967" duration="928000" />
+      <workItem from="1732854638967" duration="3001000" />
     </task>
     <servers />
   </component>
