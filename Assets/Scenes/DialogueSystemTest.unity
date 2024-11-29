@@ -1079,13 +1079,13 @@ MonoBehaviour:
   dialogueTextEffect: 00000000010000000200000003000000
   dialogueBoxEffect: 
   defaultCharDelayTime: 0.02
-  isFixedDialogueSfxTiming: 1
+  isFixedDialogueSfxTiming: 0
   fixedDialogueSfxTiming: 0.05
   charBasedWave: 1
   waveSpeed: 2
   waveExponent: 10
   waveIntensity: 0.1
-  shakeMagnitude: 2
+  shakeMagnitude: 4
   charBasedRipple: 1
   rippleSpeed: 7
   rippleExponent: 5
