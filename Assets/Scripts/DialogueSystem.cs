@@ -14,6 +14,7 @@ public class DialogueSystem : MonoBehaviour
     [SerializeField][Tooltip("This is for the timing of each dialogue line. Example: for fast, set 0.02f; for slow, set 0.2f.\n\nMake sure this is in sequence with the order of the dialogue lines. If list is empty, system will use default timing.")] private float[] charDelayTimes;
     [SerializeField][Tooltip("This is for what will play when each character of a dialogue line is being printed out.\n\nMake sure this is in sequence with the order of the dialogue lines.")] private AudioClip[] dialogueLineSfx;
     [SerializeField] private TextEffect[] dialogueTextEffect;
+    [SerializeField] private PanelEffect[] dialogueBoxEffect;
 
     [Header("Dialogue Settings: General")]
     [SerializeField][Range(0.01f, 0.5f)] private float defaultCharDelayTime;
@@ -41,6 +42,7 @@ public class DialogueSystem : MonoBehaviour
     private bool isPrinting = false;
     private int iteration = 0;
     private bool effectRunning = false;
+    private bool skipCheck = false;
 
     // Start is called before the first frame update
     void Start()
@@ -67,6 +69,13 @@ public class DialogueSystem : MonoBehaviour
                 {
                     dialoguePanel.SetActive(false);
                 }
+            }
+        }
+        else if (isPrinting)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                skipCheck = true;
             }
         }
     }
@@ -111,11 +120,17 @@ public class DialogueSystem : MonoBehaviour
             dialogueText.text += c;
             if (!isFixedDialogueSfxTiming) dialogueSfxSource.Play();
             yield return new WaitForSeconds(f);
+            if (skipCheck)
+            {
+                dialogueText.text = dialogueLines[iteration];
+                break;
+            }
         }
 
         // Change those starting values at the end and iterate.
         promptButton.enabled = true;
         isPrinting = false;
+        skipCheck = false;
         iteration++;
     }
 
@@ -145,7 +160,6 @@ public class DialogueSystem : MonoBehaviour
                 bool firstRun = true;
                 var verts = textInfo.meshInfo[charInfo.materialReferenceIndex].vertices;
                 Vector3 vertOffset = new Vector3();
-                Debug.Log(effect);
                 for (int j = 0; j < 4; ++j)
                 {
                     switch (effect)
@@ -217,5 +231,11 @@ public class DialogueSystem : MonoBehaviour
         Wavy,
         Ripple,
         Shaky
+    }
+
+    private enum PanelEffect
+    {
+        None,
+        Shake
     }
 }
