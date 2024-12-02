@@ -1,3 +1,17 @@
+//  This is a prototype for the dialogue system, intended to be used in the Cleanup Krue major project.
+//  This specific model is designed to include all possible features, with the intention of being gutted to only include necessary features once implemented.
+//  To use this dialogue system in scripting, you must ready the following variables (make sure you clear these variables first with "var.Clear()" or "var = null":
+//
+//  1. dialogueCharacterNames[]: Put all character names to appear in the dialogueCharacterNames string array, in sequence.
+//  2. dialogueLines[]: Put all the dialogue lines in the dialogueLines string array, in sequence.
+//  3. charDelayTimes[]: If you want specific timing for each dialogue line, set the values in the charDelayTimes float array, in sequence. Otherwise, make sure to set the
+//     defaultCharDelayTime value in the Inspector.
+//  4. dialogueLineSfx[]: If you want to set the sound effect for each dialogue line, set the values in the dialogueLineSfx AudioClip array, in sequence. Otherwise, make sure to set
+//     the defaultDialogueSfx value in the Inspector.
+//  5. If you want to set an effect for each dialogue line, set the values in the dialogueTextEffect enum array, in sequence. Otherwise, it will default to none.
+//  6. PanelEffect is WIP.
+//  7. TransitionEffect is WIP.
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,17 +23,21 @@ using Random = UnityEngine.Random;
 public class DialogueSystem : MonoBehaviour
 {
     [Header("Dialogue Values")]
-    [SerializeField][Tooltip("This is for listing the name of the characters that are talking per dialogue line.\n\nMake sure this is in sequence with the order of the dialogue lines.")] private string[] dialogueCharacterNames;
-    [SerializeField][Tooltip("This is for each line of dialogue in this one dialogue event.")] private string[] dialogueLines;
+    [SerializeField][Tooltip("This is for listing the name of the characters that are talking per dialogue line. Make sure this is in sequence with the order of the dialogue lines.\n\nTip: inserting a blank string will print nothing, which can be handy for displaying system messages through the dialogue system, e.g. in-game tips.")] private string[] dialogueCharacterNames;
+    [SerializeField][Tooltip("This is for each line of dialogue in this one dialogue event.")] private List<string> dialogueLines = new List<string>();
     [SerializeField][Tooltip("This is for the timing of each dialogue line. Example: for fast, set 0.02f; for slow, set 0.2f.\n\nMake sure this is in sequence with the order of the dialogue lines. If list is empty, system will use default timing.")] private float[] charDelayTimes;
     [SerializeField][Tooltip("This is for what will play when each character of a dialogue line is being printed out.\n\nMake sure this is in sequence with the order of the dialogue lines.")] private AudioClip[] dialogueLineSfx;
     [SerializeField] private TextEffect[] dialogueTextEffect;
     [SerializeField] private PanelEffect[] dialogueBoxEffect;
+    [SerializeField] private TransitionEffect transitionEffect;
 
     [Header("Dialogue Settings: General")]
     [SerializeField][Range(0.01f, 0.5f)] private float defaultCharDelayTime;
     [SerializeField][Tooltip("By default, the dialogue SFX is played when each character is printed. This sets the SFX onto an individualised timer that runs until the dialogue stops printing.\n\nThis can be handy for higher timing values that can cause the SFX to play too fast and produce an unwanted result.")] private bool isFixedDialogueSfxTiming;
     [SerializeField] private float fixedDialogueSfxTiming;
+    [SerializeField] private AudioClip defaultDialogueSfx;
+    [SerializeField] private bool pauseAtFullStop;
+    [SerializeField] private float fullStopPauseTime;
     
     [Header("Dialogue Settings: Effects")]
     [SerializeField] private bool charBasedWave = false;
@@ -61,7 +79,7 @@ public class DialogueSystem : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                if (iteration < dialogueLines.Length)
+                if (iteration < dialogueLines.Count)
                 {
                     StartCoroutine(PrintDialogue(dialogueCharacterNames[iteration], dialogueLines[iteration]));
                 }
@@ -91,40 +109,48 @@ public class DialogueSystem : MonoBehaviour
 
         // This checks to see if there is a time set at the current iteration. If so, set the time as that. If not, set the time as the default value.
         float f = 0;
-        if (charDelayTimes.Length != iteration) f = charDelayTimes[iteration];
+        if (charDelayTimes.Length > iteration) f = charDelayTimes[iteration];
         else f = defaultCharDelayTime;
 
         // Set up the dialogue clip and sort the SFX timing based on what isFixedDialogueSfxTiming set to.
-        dialogueSfxSource.clip = dialogueLineSfx[iteration];
+        if (dialogueLineSfx.Length > iteration) dialogueSfxSource.clip = dialogueLineSfx[iteration];
+        else dialogueSfxSource.clip = defaultDialogueSfx;
         if (isFixedDialogueSfxTiming) StartCoroutine(PlaySfxFixed());
-        
-        switch (dialogueTextEffect[iteration])
+
+        if (dialogueTextEffect.Length > iteration)
         {
-            case TextEffect.None:
-                break;
-            case TextEffect.Wavy:
-                StartCoroutine(TextAnimation(TextEffect.Wavy));
-                break;
-            case TextEffect.Ripple:
-                StartCoroutine(TextAnimation(TextEffect.Ripple));
-                break;
-            case TextEffect.Shaky:
-                StartCoroutine(TextAnimation(TextEffect.Shaky));
-                break;
+            switch (dialogueTextEffect[iteration])
+            {
+                case TextEffect.None:
+                    break;
+                case TextEffect.Wavy:
+                    StartCoroutine(TextAnimation(TextEffect.Wavy));
+                    break;
+                case TextEffect.Ripple:
+                    StartCoroutine(TextAnimation(TextEffect.Ripple));
+                    break;
+                case TextEffect.Shaky:
+                    StartCoroutine(TextAnimation(TextEffect.Shaky));
+                    break;
+            }
         }
+        else StopCoroutine(TextAnimation(TextEffect.None));
 
         // Print out the values to the dialogue box.
         characterNameText.text = dialogueCharacterNames[iteration];
+        int charIteration = 0;
         foreach (char c in dialogueLine)
         {
             dialogueText.text += c;
             if (!isFixedDialogueSfxTiming) dialogueSfxSource.Play();
+            if (c == '.' && pauseAtFullStop && charIteration != dialogueLine.Length - 1) yield return new WaitForSeconds(fullStopPauseTime);
             yield return new WaitForSeconds(f);
             if (skipCheck)
             {
                 dialogueText.text = dialogueLines[iteration];
                 break;
             }
+            charIteration++;
         }
 
         // Change those starting values at the end and iterate.
@@ -237,5 +263,12 @@ public class DialogueSystem : MonoBehaviour
     {
         None,
         Shake
+    }
+
+    private enum TransitionEffect
+    {
+        None,
+        FadeIn,
+        FadeSlideIn
     }
 }

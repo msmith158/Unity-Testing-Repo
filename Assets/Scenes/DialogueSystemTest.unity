@@ -148,7 +148,7 @@ AudioSource:
   m_GameObject: {fileID: 608535502}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 4fac380b5d92926409af947e6a3617f3, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -1061,26 +1061,33 @@ MonoBehaviour:
   - Johnson
   - Boris
   - David
+  - 
   dialogueLines:
   - 'Welcome to Watching Paint Dry: The Game.'
   - In this game, you watch paint dry.
   - You win the game by watching the paint until it is dry.
   - You lose the game by touching the wall while it is not yet dry.
+  - You have completed this short sequence of dialogue. Proceed to close the dialogue
+    box.
   charDelayTimes:
-  - 0.01
-  - 0.01
-  - 0.01
-  - 0.1
+  - 0.02
+  - 0.02
+  - 0.02
+  - 0.09
   dialogueLineSfx:
-  - {fileID: 8300000, guid: 6b00bd7b373d2cd49865e7e786acaa39, type: 3}
-  - {fileID: 8300000, guid: 6b00bd7b373d2cd49865e7e786acaa39, type: 3}
-  - {fileID: 8300000, guid: 6b00bd7b373d2cd49865e7e786acaa39, type: 3}
-  - {fileID: 8300000, guid: 6b00bd7b373d2cd49865e7e786acaa39, type: 3}
+  - {fileID: 8300000, guid: b53c656176101354f81343c718c19fdf, type: 3}
+  - {fileID: 8300000, guid: b53c656176101354f81343c718c19fdf, type: 3}
+  - {fileID: 8300000, guid: b53c656176101354f81343c718c19fdf, type: 3}
+  - {fileID: 8300000, guid: b53c656176101354f81343c718c19fdf, type: 3}
   dialogueTextEffect: 00000000010000000200000003000000
   dialogueBoxEffect: 
+  transitionEffect: 0
   defaultCharDelayTime: 0.02
   isFixedDialogueSfxTiming: 0
   fixedDialogueSfxTiming: 0.05
+  defaultDialogueSfx: {fileID: 8300000, guid: 6b00bd7b373d2cd49865e7e786acaa39, type: 3}
+  pauseAtFullStop: 1
+  fullStopPauseTime: 0.5
   charBasedWave: 1
   waveSpeed: 2
   waveExponent: 10
