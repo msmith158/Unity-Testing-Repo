@@ -1070,9 +1070,9 @@ MonoBehaviour:
   - You have completed this short sequence of dialogue. Proceed to close the dialogue
     box.
   charDelayTimes:
-  - 0.02
-  - 0.02
-  - 0.02
+  - 0.03
+  - 0.03
+  - 0.03
   - 0.09
   dialogueLineSfx:
   - {fileID: 8300000, guid: b53c656176101354f81343c718c19fdf, type: 3}

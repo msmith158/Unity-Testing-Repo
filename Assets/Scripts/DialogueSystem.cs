@@ -116,7 +116,7 @@ public class DialogueSystem : MonoBehaviour
         if (dialogueLineSfx.Length > iteration) dialogueSfxSource.clip = dialogueLineSfx[iteration];
         else dialogueSfxSource.clip = defaultDialogueSfx;
         if (isFixedDialogueSfxTiming) StartCoroutine(PlaySfxFixed());
-
+        
         if (dialogueTextEffect.Length > iteration)
         {
             switch (dialogueTextEffect[iteration])
@@ -124,6 +124,7 @@ public class DialogueSystem : MonoBehaviour
                 case TextEffect.None:
                     break;
                 case TextEffect.Wavy:
+                    Application.targetFrameRate = 60;
                     StartCoroutine(TextAnimation(TextEffect.Wavy));
                     break;
                 case TextEffect.Ripple:
@@ -134,7 +135,6 @@ public class DialogueSystem : MonoBehaviour
                     break;
             }
         }
-        else StopCoroutine(TextAnimation(TextEffect.None));
 
         // Print out the values to the dialogue box.
         characterNameText.text = dialogueCharacterNames[iteration];
@@ -240,13 +240,13 @@ public class DialogueSystem : MonoBehaviour
                     }
                 }
             }
-
             for (int i = 0; i < textInfo.meshInfo.Length; ++i)
             {
                 var meshInfo = textInfo.meshInfo[i];
                 meshInfo.mesh.vertices = meshInfo.vertices;
                 dialogueText.UpdateGeometry(meshInfo.mesh, i);
             }
+
             yield return null;
         }
     }
