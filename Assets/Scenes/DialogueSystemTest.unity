@@ -1081,7 +1081,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b53c656176101354f81343c718c19fdf, type: 3}
   dialogueTextEffect: 00000000010000000200000003000000
   dialogueBoxEffect: 
-  transitionEffect: 0
+  panelTransitionEffect: 1
   defaultCharDelayTime: 0.02
   isFixedDialogueSfxTiming: 0
   fixedDialogueSfxTiming: 0.05
@@ -1097,6 +1097,7 @@ MonoBehaviour:
   rippleSpeed: 7
   rippleExponent: 5
   rippleIntensity: 0.1
+  panelFadeTime: 0.2
   dialoguePanel: {fileID: 856508503}
   characterNameText: {fileID: 613587380}
   dialogueText: {fileID: 1691795330}
