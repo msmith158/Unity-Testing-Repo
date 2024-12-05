@@ -54,9 +54,15 @@ namespace Mitchel.UISystems
 
         [Header("Panel Settings: Effects")]
         [SerializeField] private float panelFadeTime = 0.3f;
-        [SerializeField][Tooltip("This value is to ADD/SUBTRACT from the panel's current position, so it is not expecting an explicit position on the screen")] private Vector3 panelSlideFromPos;
         [SerializeField] private float panelSlideTime = 0.5f;
-        [SerializeField][Tooltip("Should the panel slide out when it closes? If not, it will just fade out.")] private bool slideOutOnExit = false;
+        [SerializeField][Tooltip("This value is to ADD/SUBTRACT from the panel's current position, so it is not expecting an explicit position on the screen")] private Vector3 panelSlideInFromPos;
+        [SerializeField][Tooltip("This value is to ADD/SUBTRACT from the panel's current position, so it is not expecting an explicit position on the screen")] private Vector3 panelSlideOutToPos;
+        [SerializeField] private bool smoothSlide = false;
+        [SerializeField][Tooltip("Should the panel slide out when it closes? If not, it will just utilise panelFadeTime and fade out.")] private bool slideOutOnExit = false;
+        [SerializeField] private bool separateFadeAndSlideTime = false;
+
+        [Header("Misc Settings")]
+        [SerializeField] private float globalDelayTime;
 
         [Header("Object References")]
         [SerializeField] private GameObject dialoguePanel;
@@ -74,7 +80,7 @@ namespace Mitchel.UISystems
         // Start is called before the first frame update
         void Start()
         {
-            StartCoroutine(BeginPanelTransition(panelTransitionEffect, true));
+            StartCoroutine(GlobalDelay());
         }
 
         private void Update()
@@ -102,6 +108,13 @@ namespace Mitchel.UISystems
             }
         }
 
+        private IEnumerator GlobalDelay()
+        {
+            yield return new WaitForSeconds(globalDelayTime);
+            StartCoroutine(BeginPanelTransition(panelTransitionEffect, true));
+        }
+
+        // ### PANEL TRANSITION FUNCTION ###
         private IEnumerator BeginPanelTransition(PanelTransition panelTransition, bool enable)
         {
             dialogueText.text = "";
@@ -115,7 +128,7 @@ namespace Mitchel.UISystems
 
             switch (panelTransition)
             {
-                case PanelTransition.FadeIn:
+                case PanelTransition.Fade:
                     switch (enable)
                     {
                         case true:
@@ -128,8 +141,8 @@ namespace Mitchel.UISystems
                                 timeElapsed += Time.deltaTime;
                                 yield return null;
                             }
-                            dialoguePanelImage.color = opaque;
 
+                            dialoguePanelImage.color = opaque;
                             if (!isPrinting) StartCoroutine(PrintDialogue(dialogueCharacterNames[0], dialogueLines[0]));
                             break;
                         case false:
@@ -146,23 +159,61 @@ namespace Mitchel.UISystems
                             break;
                     }
                     break;
-                case PanelTransition.FadeAndSlideIn:
+                case PanelTransition.FadeAndSlide:
+                    float duration;
+                    if (panelFadeTime < panelSlideTime) duration = panelSlideTime;
+                    else duration = panelFadeTime;
+                    Vector3 newPanelPos = dialoguePanel.transform.position;
+
                     switch (enable)
                     {
                         case true:
                             dialoguePanel.SetActive(true);
                             dialoguePanelImage.color = transparent;
+                            dialoguePanel.transform.position = newPanelPos + panelSlideInFromPos;
 
-                            while (timeElapsed < panelSlideTime)
+                            while (timeElapsed < duration)
                             {
+                                if (separateFadeAndSlideTime)
+                                {
+                                    if ((timeElapsed / panelFadeTime) < 1 && separateFadeAndSlideTime) dialoguePanelImage.color = Vector4.Lerp(transparent, opaque, timeElapsed / panelFadeTime);
+                                }
+                                else if ((timeElapsed / panelSlideTime) < 1) dialoguePanelImage.color = Vector4.Lerp(transparent, opaque, timeElapsed / panelSlideTime);
+                                if ((timeElapsed / panelSlideTime) < 1) dialoguePanel.transform.position = Vector3.Lerp(newPanelPos + panelSlideInFromPos, newPanelPos, timeElapsed / panelSlideTime);
 
+                                timeElapsed += Time.deltaTime;
+                                yield return null;
                             }
+
+                            dialoguePanelImage.color = opaque;
+                            dialoguePanel.transform.position = newPanelPos;
+                            if (!isPrinting) StartCoroutine(PrintDialogue(dialogueCharacterNames[0], dialogueLines[0]));
                             break;
                         case false:
+                            if (slideOutOnExit)
+                            {
+                                while (timeElapsed < duration)
+                                {
+                                    if (separateFadeAndSlideTime)
+                                    {
+                                        if ((timeElapsed / panelFadeTime) < 1 && separateFadeAndSlideTime) dialoguePanelImage.color = Vector4.Lerp(opaque, transparent, timeElapsed / panelFadeTime);
+                                    }
+                                    else if ((timeElapsed / panelSlideTime) < 1) dialoguePanelImage.color = Vector4.Lerp(opaque, transparent, timeElapsed / panelSlideTime);
+                                    if ((timeElapsed / panelSlideTime) < 1) dialoguePanel.transform.position = Vector3.Lerp(newPanelPos, newPanelPos + panelSlideOutToPos, timeElapsed / panelSlideTime);
+
+                                    timeElapsed += Time.deltaTime;
+                                    yield return null;
+                                }
+
+                                dialoguePanelImage.color = transparent;
+                                dialoguePanel.transform.position = newPanelPos + panelSlideOutToPos;
+                                dialoguePanel.SetActive(false);
+                            }
+                            else StartCoroutine(BeginPanelTransition(PanelTransition.Fade, false));
                             break;
                     }
                     break;
-                case PanelTransition.FadeAndZoomIn:
+                case PanelTransition.FadeAndZoom:
                     break;
             }
             yield return null;
@@ -239,6 +290,7 @@ namespace Mitchel.UISystems
             }
         }
 
+        // ### TEXT EFFECT FUNCTION ###
         // Thanks to Kemble Software's tutorial for creating this effect: https://youtu.be/FXMqUdP3XcE
         private IEnumerator TextAnimation(TextEffect effect)
         {
@@ -345,9 +397,9 @@ namespace Mitchel.UISystems
         private enum PanelTransition
         {
             None,
-            FadeIn,
-            FadeAndSlideIn,
-            FadeAndZoomIn
+            Fade,
+            FadeAndSlide,
+            FadeAndZoom
         }
     }
 }

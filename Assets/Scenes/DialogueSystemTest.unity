@@ -495,7 +495,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &856508504
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1081,7 +1081,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b53c656176101354f81343c718c19fdf, type: 3}
   dialogueTextEffect: 00000000010000000200000003000000
   dialogueBoxEffect: 
-  panelTransitionEffect: 1
+  panelTransitionEffect: 2
   defaultCharDelayTime: 0.02
   isFixedDialogueSfxTiming: 0
   fixedDialogueSfxTiming: 0.05
@@ -1098,6 +1098,13 @@ MonoBehaviour:
   rippleExponent: 5
   rippleIntensity: 0.1
   panelFadeTime: 0.2
+  panelSlideTime: 0.3
+  panelSlideInFromPos: {x: -150, y: 0, z: 0}
+  panelSlideOutToPos: {x: 150, y: 0, z: 0}
+  smoothSlide: 0
+  slideOutOnExit: 1
+  separateFadeAndSlideTime: 0
+  globalDelayTime: 1
   dialoguePanel: {fileID: 856508503}
   characterNameText: {fileID: 613587380}
   dialogueText: {fileID: 1691795330}
