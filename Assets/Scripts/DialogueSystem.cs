@@ -33,7 +33,7 @@ namespace Mitchel.UISystems
         [SerializeField] private PanelEffect[] dialogueBoxEffect;
         [SerializeField] private PanelTransition panelTransitionEffect;
 
-        [Header("Dialogue Settings: General")]
+        [Header("Dialogue Settings: General")] 
         [SerializeField][Range(0.01f, 0.5f)] private float defaultCharDelayTime;
         [SerializeField][Tooltip("By default, the dialogue SFX is played when each character is printed. This sets the SFX onto an individualised timer that runs until the dialogue stops printing.\n\nThis can be handy for higher timing values that can cause the SFX to play too fast and produce an unwanted result.")] private bool isFixedDialogueSfxTiming;
         [SerializeField] private float fixedDialogueSfxTiming;
