@@ -1308,7 +1308,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b53c656176101354f81343c718c19fdf, type: 3}
   dialogueTextEffect: 00000000010000000200000003000000
   dialogueBoxEffect: 
-  panelTransitionEffect: 2
+  panelTransitionEffect: 1
   defaultCharDelayTime: 0.02
   isFixedDialogueSfxTiming: 0
   fixedDialogueSfxTiming: 0.05
