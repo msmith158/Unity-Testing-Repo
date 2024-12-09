@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class InfiniteObjectRotation : MonoBehaviour
 {
-    [SerializeField] private Transform objectToRotate;
+    private GameObject cube;
     [SerializeField] private Vector3 rotationSpeed;
     [SerializeField] private float rotationMagnitude = 1f;
+    [SerializeField] private Vector3 primitiveOffset;
 
-    // Update is called once per frame
+    void Start()
+    {
+        cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        cube.transform.position = primitiveOffset;
+        cube.transform.localScale = new Vector3(3, 1, 1);
+    }
     void Update()
     {
-        objectToRotate.Rotate(rotationSpeed.x * rotationMagnitude, rotationSpeed.y * rotationMagnitude, rotationSpeed.z * rotationMagnitude);
+        cube.transform.Rotate(rotationSpeed.x * rotationMagnitude, rotationSpeed.y * rotationMagnitude, rotationSpeed.z * rotationMagnitude);
     }
 }
