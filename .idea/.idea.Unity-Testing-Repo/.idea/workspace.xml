@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6eb8171d-73ca-48b9-8b45-c26631d2f8fc" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Unity-Testing-Repo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Unity-Testing-Repo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/DialogueSystemTest.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/DialogueSystemTest.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/InfiniteObjectRotation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/InfiniteObjectRotation.cs" afterDir="false" />
-    </list>
+    <list default="true" id="6eb8171d-73ca-48b9-8b45-c26631d2f8fc" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -97,6 +93,7 @@
       <workItem from="1733117194501" duration="10428000" />
       <workItem from="1733475720218" duration="3594000" />
       <workItem from="1733755653371" duration="837000" />
+      <workItem from="1733824485838" duration="526000" />
     </task>
     <servers />
   </component>
