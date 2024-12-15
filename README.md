@@ -8,7 +8,7 @@ This testing repository contains the following:
 <ul>
   <li><strong>3</strong> audio clips</li>
   <li><strong>1</strong> package</li>
-  <li><strong>3</strong> scene</li>
-  <li><strong>3</strong> script</li>
+  <li><strong>3</strong> scenes</li>
+  <li><strong>3</strong> scripts</li>
   <li><strong>1</strong> sprite</li>
 </ul>
