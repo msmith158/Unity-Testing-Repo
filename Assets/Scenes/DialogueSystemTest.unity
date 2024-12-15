@@ -1039,7 +1039,7 @@ GameObject:
   - component: {fileID: 1865463307}
   - component: {fileID: 1865463309}
   m_Layer: 0
-  m_Name: System
+  m_Name: SystemManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1075,11 +1075,7 @@ MonoBehaviour:
   - 0.03
   - 0.03
   - 0.09
-  dialogueLineSfx:
-  - {fileID: 8300000, guid: b53c656176101354f81343c718c19fdf, type: 3}
-  - {fileID: 8300000, guid: b53c656176101354f81343c718c19fdf, type: 3}
-  - {fileID: 8300000, guid: b53c656176101354f81343c718c19fdf, type: 3}
-  - {fileID: 8300000, guid: b53c656176101354f81343c718c19fdf, type: 3}
+  dialogueLineSfx: []
   dialogueTextEffect: 00000000010000000200000003000000
   dialogueBoxEffect: 
   panelTransitionEffect: 2
@@ -1087,6 +1083,7 @@ MonoBehaviour:
   isFixedDialogueSfxTiming: 0
   fixedDialogueSfxTiming: 0.05
   defaultDialogueSfx: {fileID: 8300000, guid: 6b00bd7b373d2cd49865e7e786acaa39, type: 3}
+  dialogueAdvanceSfx: {fileID: 8300000, guid: c2224dc49172df14c9669afc361afd76, type: 3}
   pauseAtFullStop: 1
   fullStopPauseTime: 0.5
   charBasedWave: 1

@@ -38,6 +38,7 @@ namespace Mitchel.UISystems
         [SerializeField][Tooltip("By default, the dialogue SFX is played when each character is printed. This sets the SFX onto an individualised timer that runs until the dialogue stops printing.\n\nThis can be handy for higher timing values that can cause the SFX to play too fast and produce an unwanted result.")] private bool isFixedDialogueSfxTiming;
         [SerializeField] private float fixedDialogueSfxTiming;
         [SerializeField] private AudioClip defaultDialogueSfx;
+        [SerializeField] private AudioClip dialogueAdvanceSfx;
         [SerializeField] private bool pauseAtFullStop;
         [SerializeField] private float fullStopPauseTime;
 
@@ -89,6 +90,7 @@ namespace Mitchel.UISystems
             {
                 if (Input.GetKeyDown(KeyCode.E))
                 {
+                    dialogueSfxSource.PlayOneShot(dialogueAdvanceSfx);
                     if (iteration < dialogueLines.Count)
                     {
                         StartCoroutine(PrintDialogue(dialogueCharacterNames[iteration], dialogueLines[iteration]));
