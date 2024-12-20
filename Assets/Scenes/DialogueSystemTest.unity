@@ -1086,6 +1086,8 @@ MonoBehaviour:
   dialogueAdvanceSfx: {fileID: 8300000, guid: c2224dc49172df14c9669afc361afd76, type: 3}
   pauseAtFullStop: 1
   fullStopPauseTime: 0.5
+  keyboardPromptButton: {fileID: 21300000, guid: 27378688c9a3d464ea8d2d718d271944, type: 3}
+  controllerPromptButton: {fileID: 21300000, guid: e322985f528ee6c478b0dae98c4f4956, type: 3}
   charBasedWave: 1
   waveSpeed: 2
   waveExponent: 10
@@ -1096,18 +1098,42 @@ MonoBehaviour:
   rippleExponent: 5
   rippleIntensity: 0.1
   panelFadeTime: 0.2
-  panelSlideTime: 0.2
+  panelSlideTime: 0.6
   panelSlideInFromPos: {x: -150, y: 0, z: 0}
   panelSlideOutToPos: {x: 150, y: 0, z: 0}
-  smoothSlide: 0
+  useSlideCurve: 0
+  slideCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   slideOutOnExit: 1
-  separateFadeAndSlideTime: 0
+  separateFadeAndSlideTime: 1
   globalDelayTime: 1
   dialoguePanel: {fileID: 856508503}
   characterNameText: {fileID: 613587380}
   dialogueText: {fileID: 1691795330}
-  promptButton: {fileID: 1524347343}
   dialogueSfxSource: {fileID: 608535503}
+  promptButton: {fileID: 1524347343}
 --- !u!4 &1865463308
 Transform:
   m_ObjectHideFlags: 0

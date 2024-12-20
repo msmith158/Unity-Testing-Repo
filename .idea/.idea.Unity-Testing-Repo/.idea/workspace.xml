@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6eb8171d-73ca-48b9-8b45-c26631d2f8fc" name="Changes" comment="" />
+    <list default="true" id="6eb8171d-73ca-48b9-8b45-c26631d2f8fc" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Unity-Testing-Repo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Unity-Testing-Repo/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/DialogueSystemTest.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/DialogueSystemTest.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/DialogueSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/DialogueSystem.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -12,6 +16,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/DialogueSystem.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
@@ -95,6 +102,8 @@
       <workItem from="1733755653371" duration="837000" />
       <workItem from="1733824485838" duration="526000" />
       <workItem from="1734271802346" duration="4128000" />
+      <workItem from="1734584214699" duration="12064000" />
+      <workItem from="1734679296709" duration="2398000" />
     </task>
     <servers />
   </component>

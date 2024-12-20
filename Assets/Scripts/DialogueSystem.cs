@@ -12,12 +12,11 @@
 //  6. PanelEffect is WIP.
 //  7. TransitionEffect is WIP.
 
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
+using Image = UnityEngine.UI.Image;
 using Random = UnityEngine.Random;
 
 namespace Mitchel.UISystems
@@ -41,6 +40,8 @@ namespace Mitchel.UISystems
         [SerializeField] private AudioClip dialogueAdvanceSfx;
         [SerializeField] private bool pauseAtFullStop;
         [SerializeField] private float fullStopPauseTime;
+        [SerializeField] private Sprite keyboardPromptButton;
+        [SerializeField] private Sprite controllerPromptButton;
 
         [Header("Dialogue Settings: Effects")]
         [SerializeField] private bool charBasedWave = false;
@@ -58,9 +59,10 @@ namespace Mitchel.UISystems
         [SerializeField] private float panelSlideTime = 0.5f;
         [SerializeField][Tooltip("This value is to ADD/SUBTRACT from the panel's current position, so it is not expecting an explicit position on the screen")] private Vector3 panelSlideInFromPos;
         [SerializeField][Tooltip("This value is to ADD/SUBTRACT from the panel's current position, so it is not expecting an explicit position on the screen")] private Vector3 panelSlideOutToPos;
-        [SerializeField] private bool smoothSlide = false;
+        [SerializeField][Tooltip("Use this for a custom slide curve, e.g. to smooth the slide. Note that the total time is determined by the length of the AnimationCurve, so panelSlideTime and separateFadeAndSlideTime is ignored.")] private bool useSlideCurve = false;
+        [SerializeField] private AnimationCurve slideCurve;
         [SerializeField][Tooltip("Should the panel slide out when it closes? If not, it will just utilise panelFadeTime and fade out.")] private bool slideOutOnExit = false;
-        [SerializeField] private bool separateFadeAndSlideTime = false;
+        [SerializeField][Tooltip("By default, the fade and slide time is combined. This separates it to use both panelFadeTime and panelSlideTime.")] private bool separateFadeAndSlideTime = false;
 
         [Header("Misc Settings")]
         [SerializeField] private float globalDelayTime;
@@ -69,14 +71,22 @@ namespace Mitchel.UISystems
         [SerializeField] private GameObject dialoguePanel;
         [SerializeField] private TextMeshProUGUI characterNameText;
         [SerializeField] private TextMeshProUGUI dialogueText;
-        [SerializeField] private Image promptButton;
         [SerializeField] private AudioSource dialogueSfxSource;
+        [SerializeField] private Image promptButton;
 
         private bool isPrinting = false;
         private int iteration = 0;
         private bool effectRunning = false;
         private bool skipCheck = false;
         private bool dialogueDisengaged = false;
+        private Vector3 lastMousePosition;
+        private InputMode currentInputMode;
+        
+        private enum InputMode { Controller, Keyboard }
+        private enum PanelEffect { None, Shake }
+        private enum PanelTransition { None, Fade, FadeAndSlide, FadeAndZoom }
+        private enum TextEffect { None, Wavy, Ripple, Shaky }
+        private enum TextTransition { None, FadeIn, FadeAndSlideIn }
 
         // Start is called before the first frame update
         void Start()
@@ -88,7 +98,7 @@ namespace Mitchel.UISystems
         {
             if (!isPrinting)
             {
-                if (Input.GetKeyDown(KeyCode.E))
+                if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Joystick1Button0))
                 {
                     dialogueSfxSource.PlayOneShot(dialogueAdvanceSfx);
                     if (iteration < dialogueLines.Count)
@@ -103,10 +113,16 @@ namespace Mitchel.UISystems
             }
             else if (isPrinting)
             {
-                if (Input.GetKeyDown(KeyCode.E))
+                if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Joystick1Button0))
                 {
                     skipCheck = true;
                 }
+            }
+            
+            if ((Input.anyKeyDown || Input.mousePosition != lastMousePosition))
+            {
+                ChangeGlyphs(0);
+                lastMousePosition = Input.mousePosition;
             }
         }
 
@@ -173,15 +189,25 @@ namespace Mitchel.UISystems
                             dialoguePanel.SetActive(true);
                             dialoguePanelImage.color = transparent;
                             dialoguePanel.transform.position = newPanelPos + panelSlideInFromPos;
+                            float value = 0;
 
                             while (timeElapsed < duration)
                             {
                                 if (separateFadeAndSlideTime)
                                 {
-                                    if ((timeElapsed / panelFadeTime) < 1 && separateFadeAndSlideTime) dialoguePanelImage.color = Vector4.Lerp(transparent, opaque, timeElapsed / panelFadeTime);
+                                    if ((timeElapsed / panelFadeTime) < 1) dialoguePanelImage.color = Vector4.Lerp(transparent, opaque, timeElapsed / panelFadeTime);
                                 }
                                 else if ((timeElapsed / panelSlideTime) < 1) dialoguePanelImage.color = Vector4.Lerp(transparent, opaque, timeElapsed / panelSlideTime);
-                                if ((timeElapsed / panelSlideTime) < 1) dialoguePanel.transform.position = Vector3.Lerp(newPanelPos + panelSlideInFromPos, newPanelPos, timeElapsed / panelSlideTime);
+
+                                switch (useSlideCurve)
+                                {
+                                    case true:
+                                        if ((timeElapsed / slideCurve[slideCurve.length - 1].time) < 1) dialoguePanel.transform.position = Vector3.Lerp(newPanelPos + panelSlideInFromPos, newPanelPos, timeElapsed / slideCurve[slideCurve.length - 1].time);
+                                        break;
+                                    case false:
+                                        if ((timeElapsed / panelSlideTime) < 1) dialoguePanel.transform.position = Vector3.Lerp(newPanelPos + panelSlideInFromPos, newPanelPos, timeElapsed / panelSlideTime);
+                                        break;
+                                }
 
                                 timeElapsed += Time.deltaTime;
                                 yield return null;
@@ -375,33 +401,17 @@ namespace Mitchel.UISystems
             }
         }
 
-        private enum TextEffect
+        private void ChangeGlyphs(int glyphMode)
         {
-            None,
-            Wavy,
-            Ripple,
-            Shaky
-        }
-
-        private enum TextTransition
-        {
-            None,
-            FadeIn,
-            FadeAndSlideIn
-        }
-
-        private enum PanelEffect
-        {
-            None,
-            Shake
-        }
-
-        private enum PanelTransition
-        {
-            None,
-            Fade,
-            FadeAndSlide,
-            FadeAndZoom
+            switch (glyphMode)
+            {
+                case 0:
+                    if (promptButton.sprite != keyboardPromptButton) promptButton.sprite = keyboardPromptButton;
+                    break;
+                case 1:
+                    if (promptButton.sprite != controllerPromptButton) promptButton.sprite = controllerPromptButton;
+                    break;
+            }
         }
     }
 }
