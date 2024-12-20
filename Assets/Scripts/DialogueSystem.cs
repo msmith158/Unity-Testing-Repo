@@ -24,8 +24,7 @@ namespace Mitchel.UISystems
     public class DialogueSystem : MonoBehaviour
     {
         [Header("Dialogue Values")]
-        [SerializeField][Tooltip("This is for listing the name of the characters that are talking per dialogue line. Make sure this is in sequence with the order of the dialogue lines.\n\nTip: inserting a blank string will print nothing, which can be handy for displaying system messages through the dialogue system, e.g. in-game tips.")] private string[] dialogueCharacterNames;
-        [SerializeField][Tooltip("This is for each line of dialogue in this one dialogue event.")] private List<string> dialogueLines = new List<string>();
+        [SerializeField] private List<DialogueData> dialogueData;
         [SerializeField][Tooltip("This is for the timing of each dialogue line. Example: for fast, set 0.02f; for slow, set 0.2f.\n\nMake sure this is in sequence with the order of the dialogue lines. If list is empty, system will use default timing.")] private float[] charDelayTimes;
         [SerializeField][Tooltip("This is for what will play when each character of a dialogue line is being printed out.\n\nMake sure this is in sequence with the order of the dialogue lines.")] private AudioClip[] dialogueLineSfx;
         [SerializeField] private TextEffect[] dialogueTextEffect;
@@ -88,6 +87,15 @@ namespace Mitchel.UISystems
         private enum TextEffect { None, Wavy, Ripple, Shaky }
         private enum TextTransition { None, FadeIn, FadeAndSlideIn }
 
+        [System.Serializable]
+        public class DialogueData
+        {
+            [Tooltip("This is for listing the name of the characters that are talking per dialogue line. Make sure this is in sequence with the order of the dialogue lines.\n\nTip: inserting a blank string will print nothing, which can be handy for displaying system messages through the dialogue system, e.g. in-game tips.")] public string characterName;
+            [TextArea]
+            [Tooltip("This is for each line of dialogue in this one dialogue event.")] public string dialogueLine;
+            [Space(10)]
+            public float test;
+        }
         // Start is called before the first frame update
         void Start()
         {
@@ -101,9 +109,9 @@ namespace Mitchel.UISystems
                 if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Joystick1Button0))
                 {
                     dialogueSfxSource.PlayOneShot(dialogueAdvanceSfx);
-                    if (iteration < dialogueLines.Count)
+                    if (iteration < dialogueData.Count)
                     {
-                        StartCoroutine(PrintDialogue(dialogueCharacterNames[iteration], dialogueLines[iteration]));
+                        StartCoroutine(PrintDialogue(dialogueData[iteration].characterName, dialogueData[iteration].dialogueLine));
                     }
                     else
                     {
@@ -161,7 +169,7 @@ namespace Mitchel.UISystems
                             }
 
                             dialoguePanelImage.color = opaque;
-                            if (!isPrinting) StartCoroutine(PrintDialogue(dialogueCharacterNames[0], dialogueLines[0]));
+                            if (!isPrinting) StartCoroutine(PrintDialogue(dialogueData[0].characterName, dialogueData[0].dialogueLine));
                             break;
                         case false:
                             dialoguePanelImage.color = opaque;
@@ -215,7 +223,7 @@ namespace Mitchel.UISystems
 
                             dialoguePanelImage.color = opaque;
                             dialoguePanel.transform.position = newPanelPos;
-                            if (!isPrinting) StartCoroutine(PrintDialogue(dialogueCharacterNames[0], dialogueLines[0]));
+                            if (!isPrinting) StartCoroutine(PrintDialogue(dialogueData[0].characterName, dialogueData[0].dialogueLine));
                             break;
                         case false:
                             if (slideOutOnExit)
@@ -286,7 +294,7 @@ namespace Mitchel.UISystems
             }
 
             // Print out the values to the dialogue box.
-            characterNameText.text = dialogueCharacterNames[iteration];
+            characterNameText.text = dialogueData[iteration].characterName;
             int charIteration = 0;
             foreach (char c in dialogueLine)
             {
@@ -296,7 +304,7 @@ namespace Mitchel.UISystems
                 yield return new WaitForSeconds(f);
                 if (skipCheck)
                 {
-                    dialogueText.text = dialogueLines[iteration];
+                    dialogueText.text = dialogueData[iteration].dialogueLine;
                     break;
                 }
                 charIteration++;

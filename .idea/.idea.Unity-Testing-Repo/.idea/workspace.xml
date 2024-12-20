@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="6eb8171d-73ca-48b9-8b45-c26631d2f8fc" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Unity-Testing-Repo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Unity-Testing-Repo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/DialogueSystemTest.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/DialogueSystemTest.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/DialogueSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/DialogueSystem.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -104,6 +103,9 @@
       <workItem from="1734271802346" duration="4128000" />
       <workItem from="1734584214699" duration="12064000" />
       <workItem from="1734679296709" duration="2398000" />
+      <workItem from="1734684665336" duration="355000" />
+      <workItem from="1734685036483" duration="177000" />
+      <workItem from="1734685226302" duration="34000" />
     </task>
     <servers />
   </component>

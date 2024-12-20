@@ -1057,19 +1057,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfbd14feb061691448c0e327b461c93b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueCharacterNames:
-  - Mark
-  - Johnson
-  - Boris
-  - David
-  - 
-  dialogueLines:
-  - 'Welcome to Watching Paint Dry: The Game.'
-  - In this game, you watch paint dry.
-  - You win the game by watching the paint until it is dry.
-  - You lose the game by touching the wall while it is not yet dry.
-  - You have completed this short sequence of dialogue. Proceed to close the dialogue
-    box.
+  dialogueData:
+  - characterName: Mark
+    dialogueLine: 'Welcome to Watching Paint Dry: The Game.'
+    test: 0
+  - characterName: Johnny
+    dialogueLine: In this game, you watch paint dry.
+    test: 0
+  - characterName: Boris
+    dialogueLine: You win the game by watching the paint until it is dry.
+    test: 0
+  - characterName: David
+    dialogueLine: You lose the game by touching the paint before it is dry.
+    test: 0
+  - characterName: 
+    dialogueLine: You have completed this set of dialogue. Proceed to close the dialogue
+      window.
+    test: 0
   charDelayTimes:
   - 0.03
   - 0.03
