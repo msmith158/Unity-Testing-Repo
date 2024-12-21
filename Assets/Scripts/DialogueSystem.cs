@@ -25,17 +25,11 @@ namespace Mitchel.UISystems
     {
         [Header("Dialogue Values")]
         [SerializeField] private List<DialogueData> dialogueData;
-        [SerializeField][Tooltip("This is for the timing of each dialogue line. Example: for fast, set 0.02f; for slow, set 0.2f.\n\nMake sure this is in sequence with the order of the dialogue lines. If list is empty, system will use default timing.")] private float[] charDelayTimes;
-        [SerializeField][Tooltip("This is for what will play when each character of a dialogue line is being printed out.\n\nMake sure this is in sequence with the order of the dialogue lines.")] private AudioClip[] dialogueLineSfx;
-        [SerializeField] private TextEffect[] dialogueTextEffect;
-        [SerializeField] private PanelEffect[] dialogueBoxEffect;
         [SerializeField] private PanelTransition panelTransitionEffect;
 
         [Header("Dialogue Settings: General")] 
-        [SerializeField][Range(0.01f, 0.5f)] private float defaultCharDelayTime;
         [SerializeField][Tooltip("By default, the dialogue SFX is played when each character is printed. This sets the SFX onto an individualised timer that runs until the dialogue stops printing.\n\nThis can be handy for higher timing values that can cause the SFX to play too fast and produce an unwanted result.")] private bool isFixedDialogueSfxTiming;
         [SerializeField] private float fixedDialogueSfxTiming;
-        [SerializeField] private AudioClip defaultDialogueSfx;
         [SerializeField] private AudioClip dialogueAdvanceSfx;
         [SerializeField] private bool pauseAtFullStop;
         [SerializeField] private float fullStopPauseTime;
@@ -82,9 +76,9 @@ namespace Mitchel.UISystems
         private InputMode currentInputMode;
         
         private enum InputMode { Controller, Keyboard }
-        private enum PanelEffect { None, Shake }
+        public enum PanelEffect { None, Shake }
         private enum PanelTransition { None, Fade, FadeAndSlide, FadeAndZoom }
-        private enum TextEffect { None, Wavy, Ripple, Shaky }
+        public enum TextEffect { None, Wavy, Ripple, Shaky }
         private enum TextTransition { None, FadeIn, FadeAndSlideIn }
 
         [System.Serializable]
@@ -94,7 +88,10 @@ namespace Mitchel.UISystems
             [TextArea]
             [Tooltip("This is for each line of dialogue in this one dialogue event.")] public string dialogueLine;
             [Space(10)]
-            public float test;
+            [Tooltip("This is for the timing of each dialogue line. Example: for fast, set 0.02f; for slow, set 0.2f.\n\nMake sure this is in sequence with the order of the dialogue lines. If list is empty, system will use default timing.")] public float charDelayTime;
+            [Tooltip("This is for what will play when each character of a dialogue line is being printed out.\n\nMake sure this is in sequence with the order of the dialogue lines.")] public AudioClip dialogueLineSfx;
+            public TextEffect dialogueTextEffect;
+            public PanelEffect dialogueBoxEffect;
         }
         // Start is called before the first frame update
         void Start()
@@ -265,32 +262,26 @@ namespace Mitchel.UISystems
             promptButton.enabled = false;
 
             // This checks to see if there is a time set at the current iteration. If so, set the time as that. If not, set the time as the default value.
-            float f = 0;
-            if (charDelayTimes.Length > iteration) f = charDelayTimes[iteration];
-            else f = defaultCharDelayTime;
+            float f = dialogueData[iteration].charDelayTime;
 
             // Set up the dialogue clip and sort the SFX timing based on what isFixedDialogueSfxTiming set to.
-            if (dialogueLineSfx.Length > iteration) dialogueSfxSource.clip = dialogueLineSfx[iteration];
-            else dialogueSfxSource.clip = defaultDialogueSfx;
+            dialogueSfxSource.clip = dialogueData[iteration].dialogueLineSfx;
             if (isFixedDialogueSfxTiming) StartCoroutine(PlaySfxFixed());
 
-            if (dialogueTextEffect.Length > iteration)
+            switch (dialogueData[iteration].dialogueTextEffect)
             {
-                switch (dialogueTextEffect[iteration])
-                {
-                    case TextEffect.None:
-                        break;
-                    case TextEffect.Wavy:
-                        Application.targetFrameRate = 60;
-                        StartCoroutine(TextAnimation(TextEffect.Wavy));
-                        break;
-                    case TextEffect.Ripple:
-                        StartCoroutine(TextAnimation(TextEffect.Ripple));
-                        break;
-                    case TextEffect.Shaky:
-                        StartCoroutine(TextAnimation(TextEffect.Shaky));
-                        break;
-                }
+                case TextEffect.None:
+                    break;
+                case TextEffect.Wavy:
+                    Application.targetFrameRate = 60;
+                    StartCoroutine(TextAnimation(TextEffect.Wavy));
+                    break;
+                case TextEffect.Ripple:
+                    StartCoroutine(TextAnimation(TextEffect.Ripple));
+                    break;
+                case TextEffect.Shaky:
+                    StartCoroutine(TextAnimation(TextEffect.Shaky));
+                    break;
             }
 
             // Print out the values to the dialogue box.

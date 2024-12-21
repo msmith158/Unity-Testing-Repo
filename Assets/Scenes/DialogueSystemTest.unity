@@ -1060,33 +1060,38 @@ MonoBehaviour:
   dialogueData:
   - characterName: Mark
     dialogueLine: 'Welcome to Watching Paint Dry: The Game.'
-    test: 0
+    charDelayTime: 0.02
+    dialogueLineSfx: {fileID: 8300000, guid: 6b00bd7b373d2cd49865e7e786acaa39, type: 3}
+    dialogueTextEffect: 0
+    dialogueBoxEffect: 0
   - characterName: Johnny
     dialogueLine: In this game, you watch paint dry.
-    test: 0
+    charDelayTime: 0.02
+    dialogueLineSfx: {fileID: 8300000, guid: 6b00bd7b373d2cd49865e7e786acaa39, type: 3}
+    dialogueTextEffect: 1
+    dialogueBoxEffect: 0
   - characterName: Boris
     dialogueLine: You win the game by watching the paint until it is dry.
-    test: 0
+    charDelayTime: 0.02
+    dialogueLineSfx: {fileID: 8300000, guid: 6b00bd7b373d2cd49865e7e786acaa39, type: 3}
+    dialogueTextEffect: 2
+    dialogueBoxEffect: 0
   - characterName: David
     dialogueLine: You lose the game by touching the paint before it is dry.
-    test: 0
+    charDelayTime: 0.1
+    dialogueLineSfx: {fileID: 8300000, guid: b53c656176101354f81343c718c19fdf, type: 3}
+    dialogueTextEffect: 3
+    dialogueBoxEffect: 0
   - characterName: 
     dialogueLine: You have completed this set of dialogue. Proceed to close the dialogue
       window.
-    test: 0
-  charDelayTimes:
-  - 0.03
-  - 0.03
-  - 0.03
-  - 0.09
-  dialogueLineSfx: []
-  dialogueTextEffect: 00000000010000000200000003000000
-  dialogueBoxEffect: 
+    charDelayTime: 0.02
+    dialogueLineSfx: {fileID: 8300000, guid: 6b00bd7b373d2cd49865e7e786acaa39, type: 3}
+    dialogueTextEffect: 0
+    dialogueBoxEffect: 0
   panelTransitionEffect: 2
-  defaultCharDelayTime: 0.02
   isFixedDialogueSfxTiming: 0
   fixedDialogueSfxTiming: 0.05
-  defaultDialogueSfx: {fileID: 8300000, guid: 6b00bd7b373d2cd49865e7e786acaa39, type: 3}
   dialogueAdvanceSfx: {fileID: 8300000, guid: c2224dc49172df14c9669afc361afd76, type: 3}
   pauseAtFullStop: 1
   fullStopPauseTime: 0.5
@@ -1102,7 +1107,7 @@ MonoBehaviour:
   rippleExponent: 5
   rippleIntensity: 0.1
   panelFadeTime: 0.2
-  panelSlideTime: 0.6
+  panelSlideTime: 0.2
   panelSlideInFromPos: {x: -150, y: 0, z: 0}
   panelSlideOutToPos: {x: 150, y: 0, z: 0}
   useSlideCurve: 0
@@ -1131,7 +1136,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   slideOutOnExit: 1
-  separateFadeAndSlideTime: 1
+  separateFadeAndSlideTime: 0
   globalDelayTime: 1
   dialoguePanel: {fileID: 856508503}
   characterNameText: {fileID: 613587380}
