@@ -33,8 +33,6 @@ namespace Mitchel.UISystems
         [SerializeField] private AudioClip dialogueAdvanceSfx;
         [SerializeField] private bool pauseAtFullStop;
         [SerializeField] private float fullStopPauseTime;
-        [SerializeField] private Sprite keyboardPromptButton;
-        [SerializeField] private Sprite controllerPromptButton;
 
         [Header("Dialogue Settings: Effects")]
         [SerializeField] private bool charBasedWave = false;
@@ -65,7 +63,9 @@ namespace Mitchel.UISystems
         [SerializeField] private TextMeshProUGUI characterNameText;
         [SerializeField] private TextMeshProUGUI dialogueText;
         [SerializeField] private AudioSource dialogueSfxSource;
-        [SerializeField] private Image promptButton;
+        public Sprite keyboardPromptButton;
+        public Sprite controllerPromptButton;
+        public Image promptButton;
 
         private bool isPrinting = false;
         private int iteration = 0;
@@ -144,6 +144,7 @@ namespace Mitchel.UISystems
             characterNameText.text = "";
             promptButton.enabled = false;
             float timeElapsed = 0;
+            float duration;
             Image dialoguePanelImage = dialoguePanel.GetComponent<Image>();
 
             Vector4 opaque = dialoguePanelImage.color;
@@ -183,7 +184,6 @@ namespace Mitchel.UISystems
                     }
                     break;
                 case PanelTransition.FadeAndSlide:
-                    float duration;
                     if (panelFadeTime < panelSlideTime) duration = panelSlideTime;
                     else duration = panelFadeTime;
                     Vector3 newPanelPos = dialoguePanel.transform.position;
@@ -194,7 +194,6 @@ namespace Mitchel.UISystems
                             dialoguePanel.SetActive(true);
                             dialoguePanelImage.color = transparent;
                             dialoguePanel.transform.position = newPanelPos + panelSlideInFromPos;
-                            float value = 0;
 
                             while (timeElapsed < duration)
                             {
@@ -247,6 +246,15 @@ namespace Mitchel.UISystems
                     }
                     break;
                 case PanelTransition.FadeAndZoom:
+                    switch (enable)
+                    {
+                        case true:
+                            dialoguePanel.SetActive(true);
+                            dialoguePanelImage.color = transparent;
+                            break;
+                        case false:
+                            break;
+                    }
                     break;
             }
             yield return null;
@@ -400,7 +408,7 @@ namespace Mitchel.UISystems
             }
         }
 
-        private void ChangeGlyphs(int glyphMode)
+        public void ChangeGlyphs(int glyphMode)
         {
             switch (glyphMode)
             {
