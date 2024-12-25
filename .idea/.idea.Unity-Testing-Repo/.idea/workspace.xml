@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="6eb8171d-73ca-48b9-8b45-c26631d2f8fc" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Unity-Testing-Repo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Unity-Testing-Repo/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/WhileLoopCrasher.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/WhileLoopCrasher.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/CrasherScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CrasherScript.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -111,7 +112,7 @@
       <workItem from="1734773184358" duration="4092000" />
       <workItem from="1735032771426" duration="188000" />
       <workItem from="1735032967824" duration="3627000" />
-      <workItem from="1735113023140" duration="9462000" />
+      <workItem from="1735113023140" duration="17437000" />
     </task>
     <servers />
   </component>
