@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Threading;
 using TMPro;
 using UnityEngine;
@@ -38,6 +39,8 @@ public class CrasherScript : MonoBehaviour
 
     [Header("Stack Overflow")] 
     [SerializeField] private bool useStackOverflow;
+    [DllImport("kernel32.dll")]
+    private static extern void Sleep(uint dwMilliseconds);
     
     void Update()
     {
@@ -259,11 +262,10 @@ public class CrasherScript : MonoBehaviour
         }
     }
 
-    private unsafe void OverflowTheFuckingEngine()
+    private void OverflowTheFuckingEngine()
     {
-        // Use unmanaged pointers to avoid managed runtime checks
-        int* ptr = stackalloc int[1];
-        *ptr = 0;
+        // Unsafe recursion bypassing managed handling
+        Sleep(0); // Call an unmanaged function to avoid Unity catching the recursion
         OverflowTheFuckingEngine();
     }
 }
