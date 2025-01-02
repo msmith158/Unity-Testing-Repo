@@ -38,9 +38,9 @@ public class Controller : MonoBehaviour
             float rightTrigger = gamepad.rightTrigger.ReadValue(); // Right trigger (0 to 1)
 
             // Log axes
-            Debug.Log($"Left Stick: {leftStick.x}, {leftStick.y}");
-            Debug.Log($"Right Stick: {rightStick.x}, {rightStick.y}");
-            Debug.Log($"Triggers: Left = {leftTrigger}, Right = {rightTrigger}");
+            //Debug.Log($"Left Stick: {leftStick.x}, {leftStick.y}");
+            //Debug.Log($"Right Stick: {rightStick.x}, {rightStick.y}");
+            //Debug.Log($"Triggers: Left = {leftTrigger}, Right = {rightTrigger}");
         }
         else
         {

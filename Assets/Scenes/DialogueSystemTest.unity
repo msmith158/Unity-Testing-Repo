@@ -495,7 +495,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &856508504
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1096,8 +1096,6 @@ MonoBehaviour:
   dialogueAdvanceSfx: {fileID: 8300000, guid: c2224dc49172df14c9669afc361afd76, type: 3}
   pauseAtFullStop: 1
   fullStopPauseTime: 0.5
-  keyboardPromptButton: {fileID: 21300000, guid: 27378688c9a3d464ea8d2d718d271944, type: 3}
-  controllerPromptButton: {fileID: 21300000, guid: e322985f528ee6c478b0dae98c4f4956, type: 3}
   charBasedWave: 1
   waveSpeed: 2
   waveExponent: 10
@@ -1143,6 +1141,8 @@ MonoBehaviour:
   characterNameText: {fileID: 613587380}
   dialogueText: {fileID: 1691795330}
   dialogueSfxSource: {fileID: 608535503}
+  keyboardPromptButton: {fileID: 21300000, guid: 27378688c9a3d464ea8d2d718d271944, type: 3}
+  controllerPromptButton: {fileID: 21300000, guid: e322985f528ee6c478b0dae98c4f4956, type: 3}
   promptButton: {fileID: 1524347343}
 --- !u!4 &1865463308
 Transform:

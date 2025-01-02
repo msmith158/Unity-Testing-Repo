@@ -642,25 +642,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0eb8b6562688b540a4a9e4e1b41c97d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iterationLimit: 1000
+  iterationLimit: 0
   screenText: {fileID: 107658247}
   activationString: You just fucked up big time.
   failureString: You're a fucking idiot.
-  useMemoryEater: 0
+  useMemoryEater: 1
   memoryCrashModes: 1
   mem_StringContent: ABCDEFGHIJKLMNOPQRSTUVWXYZ
-  mem_ByteIncrement: 2048
+  mem_ByteIncrement: 1024
   useCpuEater: 0
   cpu_UseMulticore: 1
-  cpu_CalcAmount: 1000000
+  cpu_CalcAmount: 10000000
   useGpuEater: 0
   gpu_MeshesToDraw: 100000
   gpu_UnitSphereExponent: 20
-  gpu_MeshToUse: {fileID: -6466791851027307748, guid: 5a2e754c31fe4934ebc0bf0463f539b2, type: 3}
-  gpu_MaterialToUse: {fileID: 2100000, guid: 7f4a0ab6d3258584b8634b2650f713e7, type: 2}
+  gpu_MeshToUse: {fileID: 6186589051000127913, guid: 5a2e754c31fe4934ebc0bf0463f539b2, type: 3}
+  gpu_MaterialToUse: {fileID: 2100000, guid: a7faa4128d601ee4f9acfdf44d537414, type: 2}
   useUnityCrash: 0
-  crashType: 2
-  useStackOverflow: 1
+  crashType: 1
+  useStackOverflow: 0
 --- !u!114 &1945463011
 MonoBehaviour:
   m_ObjectHideFlags: 0
