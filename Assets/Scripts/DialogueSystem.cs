@@ -332,10 +332,14 @@ namespace Mitchel.UISystems
         {
             yield return null;
             effectRunning = true;
+            
+            // Store the original vertices for proper offset calculations
+            var textInfo = dialogueText.textInfo;
+            
             while (effectRunning)
             {
                 dialogueText.ForceMeshUpdate();
-                var textInfo = dialogueText.textInfo;
+                textInfo = dialogueText.textInfo;
 
                 for (int i = 0; i < textInfo.characterCount; ++i)
                 {
