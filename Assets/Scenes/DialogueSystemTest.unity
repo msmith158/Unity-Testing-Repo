@@ -1061,14 +1061,14 @@ MonoBehaviour:
   dialogueData:
   - characterName: Mark
     dialogueLine: 'Welcome to Watching Paint Dry: The Game.'
-    charDelayTime: 0.02
-    dialogueLineSfx: {fileID: 8300000, guid: 6b00bd7b373d2cd49865e7e786acaa39, type: 3}
+    charDelayTime: 0.04
+    dialogueLineSfx: {fileID: 8300000, guid: abcfe306d1501c24ebbc76c39f0ed8b9, type: 3}
     dialogueTextEffect: 0
     dialogueBoxEffect: 0
   - characterName: Johnny
     dialogueLine: In this game, you watch paint dry.
     charDelayTime: 0.02
-    dialogueLineSfx: {fileID: 8300000, guid: 6b00bd7b373d2cd49865e7e786acaa39, type: 3}
+    dialogueLineSfx: {fileID: 8300000, guid: abcfe306d1501c24ebbc76c39f0ed8b9, type: 3}
     dialogueTextEffect: 1
     dialogueBoxEffect: 0
   - characterName: Boris
@@ -1080,7 +1080,7 @@ MonoBehaviour:
   - characterName: David
     dialogueLine: You lose the game by touching the paint before it is dry.
     charDelayTime: 0.1
-    dialogueLineSfx: {fileID: 8300000, guid: b53c656176101354f81343c718c19fdf, type: 3}
+    dialogueLineSfx: {fileID: 8300000, guid: 6b00bd7b373d2cd49865e7e786acaa39, type: 3}
     dialogueTextEffect: 3
     dialogueBoxEffect: 0
   - characterName: 
@@ -1091,9 +1091,9 @@ MonoBehaviour:
     dialogueTextEffect: 0
     dialogueBoxEffect: 0
   panelTransitionEffect: 2
-  isFixedDialogueSfxTiming: 0
-  fixedDialogueSfxTiming: 0.05
-  dialogueAdvanceSfx: {fileID: 8300000, guid: c2224dc49172df14c9669afc361afd76, type: 3}
+  isFixedDialogueSfxTiming: 1
+  fixedDialogueSfxTiming: 0.1
+  dialogueAdvanceSfx: {fileID: 8300000, guid: 5aaa0f629a534234bb2311133b25ee8c, type: 3}
   pauseAtFullStop: 1
   fullStopPauseTime: 0.5
   charBasedWave: 1
