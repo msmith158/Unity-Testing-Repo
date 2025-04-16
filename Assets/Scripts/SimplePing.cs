@@ -1,3 +1,6 @@
+// https://discussions.unity.com/t/how-to-ping-specific-an-address/585354/4
+// https://docs.unity3d.com/6000.0/Documentation/ScriptReference/Ping.html
+
 using System.Collections;
 using TMPro;
 using UnityEngine;
