@@ -32,9 +32,9 @@ public class SimpleTestController : MonoBehaviour
             {
                 if (Input.GetKey(KeyCode.A))
                 {
-                    rb.velocity = new Vector3(0, rb.velocity.y, 0);
+                    rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, 0);
                 }
-                else rb.velocity = new Vector3(currentSpeed, rb.velocity.y, 0);
+                else rb.linearVelocity = new Vector3(currentSpeed, rb.linearVelocity.y, 0);
             }
 
             // Holding down the left button
@@ -42,9 +42,9 @@ public class SimpleTestController : MonoBehaviour
             {
                 if (Input.GetKey(KeyCode.D))
                 {
-                    rb.velocity = new Vector3(0, rb.velocity.y, 0);
+                    rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, 0);
                 }
-                else rb.velocity = new Vector3(-currentSpeed, rb.velocity.y, 0);
+                else rb.linearVelocity = new Vector3(-currentSpeed, rb.linearVelocity.y, 0);
             }
 
             // Holding down the Shift key to sprint
@@ -60,12 +60,12 @@ public class SimpleTestController : MonoBehaviour
             // Letting go of either key
             if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
             {
-                rb.velocity = new Vector3(0, rb.velocity.y, 0);
+                rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, 0);
             }
         }
-        else if (!CanMove && rb.velocity.x != 0)
+        else if (!CanMove && rb.linearVelocity.x != 0)
         {
-            rb.velocity = new Vector3(0, rb.velocity.y, 0);
+            rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, 0);
         }
     }
 }

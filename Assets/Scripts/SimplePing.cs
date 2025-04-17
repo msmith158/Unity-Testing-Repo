@@ -5,57 +5,61 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 
-public class SimplePing : MonoBehaviour
+namespace Mitchel.Networking
 {
-    [SerializeField] private string ip;
-    [SerializeField] private int attemptAmount = 4;
-    [SerializeField] private float timeoutTime = 2f;
-    [SerializeField] private TextMeshProUGUI screenText;
-    private int iteration = 0;
-    private float totalTime = 0;
-    
-    // Start is called before the first frame update
-    void Start()
+    public class SimplePing : MonoBehaviour
     {
-        BeginPing();
-    }
+        [SerializeField] private string ip;
+        [SerializeField] private int attemptAmount = 4;
+        [SerializeField] private float timeoutTime = 2f;
+        [SerializeField] private TextMeshProUGUI screenText;
+        private int iteration = 0;
+        private float totalTime = 0;
 
-    private void BeginPing()
-    {
-        StartCoroutine(TimedPing());
-    }
-
-    private IEnumerator TimedPing()
-    {
-        float timeElapsed = 0;
-
-        if (iteration < attemptAmount)
+        // Start is called before the first frame update
+        void Start()
         {
-            screenText.text += $"Attempting to send {attemptAmount} packets to {ip}...\n";
+            BeginPing();
+        }
 
-            Ping pingJob = new Ping(ip);
-            while (!pingJob.isDone && timeElapsed < timeoutTime)
-            {
-                timeElapsed += Time.deltaTime;
-                totalTime += Time.deltaTime;
-                yield return null;
-            }
+        private void BeginPing()
+        {
+            StartCoroutine(TimedPing());
+        }
 
-            if (pingJob.isDone)
+        private IEnumerator TimedPing()
+        {
+            float timeElapsed = 0;
+
+            if (iteration < attemptAmount)
             {
-                screenText.text += $"Request completed after {timeElapsed} seconds.\n";
+                screenText.text += $"Attempting to send {attemptAmount} packets to {ip}...\n";
+
+                Ping pingJob = new Ping(ip);
+                while ((!pingJob.isDone || pingJob.time == -1) && timeElapsed < timeoutTime)
+                {
+                    Debug.Log(pingJob.time);
+                    timeElapsed += Time.deltaTime;
+                    totalTime += Time.deltaTime;
+                    yield return null;
+                }
+
+                if (timeElapsed < timeoutTime)
+                {
+                    screenText.text += $"Request completed after {timeElapsed} seconds.\n";
+                }
+                else if (timeElapsed >= timeoutTime)
+                {
+                    screenText.text += "Request timed out.\n";
+                }
+                iteration++;
+                BeginPing();
             }
             else
             {
-                screenText.text += "Request timed out.\n";
+                screenText.text += $"\nPacket job for {ip} completed after a total of {totalTime} seconds.\n";
+                totalTime = 0;
             }
-            iteration++;
-            BeginPing();
-        }
-        else
-        {
-            screenText.text += $"\nPacket job for {ip} completed after a total of {totalTime} seconds.\n";
-            totalTime = 0;
         }
     }
 }
