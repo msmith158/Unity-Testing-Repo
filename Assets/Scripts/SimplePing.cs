@@ -12,6 +12,7 @@ public class SimplePing : MonoBehaviour
     [SerializeField] private float timeoutTime = 2f;
     [SerializeField] private TextMeshProUGUI screenText;
     private int iteration = 0;
+    private float totalTime = 0;
     
     // Start is called before the first frame update
     void Start()
@@ -21,22 +22,40 @@ public class SimplePing : MonoBehaviour
 
     private void BeginPing()
     {
-        screenText.text += $"Attempting to ping {ip}...";
         StartCoroutine(TimedPing());
     }
 
     private IEnumerator TimedPing()
     {
         float timeElapsed = 0;
-        
-        while (iteration <= attemptAmount)
+
+        if (iteration < attemptAmount)
         {
+            screenText.text += $"Attempting to send {attemptAmount} packets to {ip}...\n";
+
             Ping pingJob = new Ping(ip);
-            while (!pingJob.isDone || timeElapsed < timeoutTime)
+            while (!pingJob.isDone && timeElapsed < timeoutTime)
             {
                 timeElapsed += Time.deltaTime;
+                totalTime += Time.deltaTime;
                 yield return null;
             }
+
+            if (pingJob.isDone)
+            {
+                screenText.text += $"Request completed after {timeElapsed} seconds.\n";
+            }
+            else
+            {
+                screenText.text += "Request timed out.\n";
+            }
+            iteration++;
+            BeginPing();
+        }
+        else
+        {
+            screenText.text += $"\nPacket job for {ip} completed after a total of {totalTime} seconds.\n";
+            totalTime = 0;
         }
     }
 }
