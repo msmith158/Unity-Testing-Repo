@@ -322,7 +322,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 393407116}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d0c8fd224e968d549a92ae509ca40c71, type: 3}
   m_Name: 
@@ -353,12 +353,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 393407116}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ebca8457af3a80443a7dd3174015516f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  imageURL: https://planetary.s3.amazonaws.com/web/assets/pictures/20131125_dione_cassini.jpg
+  imageURL: https://www.coralcmd.net/img/clownfish.jpg
   targetImage: {fileID: 221575600}
   screenText: {fileID: 1316699372}
 --- !u!1 &1137296882

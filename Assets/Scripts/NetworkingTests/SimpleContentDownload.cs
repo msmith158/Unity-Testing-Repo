@@ -75,12 +75,13 @@ namespace Mitchel.Networking
                 targetImage.sprite = sprite;
 
                 StopCoroutine(timerCoroutine);
-                screenText.text += $"Image download to target image completed in {totalTime} seconds.\n";
+                screenText.text += $"Image download task completed in {totalTime} seconds.\n";
             }
 
             downloadCoroutine = null;
         }
 
+        #region ====================  UTILITY FUNCTIONS  ====================
         private IEnumerator StartTimer()
         {
             while (true)
@@ -98,5 +99,6 @@ namespace Mitchel.Networking
                 new Vector2(0.5f, 0.5f) // pivot
             );
         }
+        #endregion
     }
 }
