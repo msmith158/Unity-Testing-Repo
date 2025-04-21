@@ -308,6 +308,8 @@ GameObject:
   - component: {fileID: 393407118}
   - component: {fileID: 393407117}
   - component: {fileID: 393407119}
+  - component: {fileID: 393407120}
+  - component: {fileID: 393407121}
   m_Layer: 0
   m_Name: NetworkingSystems
   m_TagString: Untagged
@@ -322,12 +324,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 393407116}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d0c8fd224e968d549a92ae509ca40c71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ip: 10.0.0.250
+  ip: 10.0.0.225
   attemptAmount: 4
   timeoutTime: 2
   screenText: {fileID: 1316699372}
@@ -353,7 +355,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 393407116}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ebca8457af3a80443a7dd3174015516f, type: 3}
   m_Name: 
@@ -361,6 +363,37 @@ MonoBehaviour:
   imageURL: https://www.coralcmd.net/img/clownfish.jpg
   targetImage: {fileID: 221575600}
   screenText: {fileID: 1316699372}
+  Success: 0
+--- !u!114 &393407120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 393407116}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72df978dd063c0a4da9252d50c4835e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textAssetURL: https://bush.coralcmd.net/other-stuff/content/james.txt
+  screenText: {fileID: 1316699372}
+  Success: 0
+--- !u!114 &393407121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 393407116}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 672e6591bbab50e45aaacc0d9612ff02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  systemObject: {fileID: 393407116}
+  textAssetURL: https://bush.coralcmd.net/other-stuff/content/james.txt
+  imageURL: https://www.coralcmd.net/img/clownfish.jpg
 --- !u!1 &1137296882
 GameObject:
   m_ObjectHideFlags: 0

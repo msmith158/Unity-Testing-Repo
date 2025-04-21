@@ -6,8 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="6eb8171d-73ca-48b9-8b45-c26631d2f8fc" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Unity-Testing-Repo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Unity-Testing-Repo/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mesh/Unwrapped_Earth_Spirit.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mesh/Unwrapped_Earth_Spirit.fbx.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/ModelTesting.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/ModelTesting.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/NetworkingTesting.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/NetworkingTesting.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SimpleContentDownload.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SimpleContentDownload.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/NetworkingTests/SimpleContentDownload.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/NetworkingTests/SimpleContentDownload.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/NetworkingTests/SimpleTextDownloader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/NetworkingTests/SimpleTextDownloader.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,7 +61,7 @@
 }</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\6000.0.33f1\Editor\Unity.exe" />
+      <option name="EXE_PATH" value="H:\Program Files\Unity\6000.0.33f1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-projectPath &quot;D:\Users\Mitchel\GitHub Repositories\Unity-Testing-Repo&quot; -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="D:\Users\Mitchel\GitHub Repositories\Unity-Testing-Repo" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -64,7 +69,7 @@
       <method v="2" />
     </configuration>
     <configuration name="Unit Tests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\6000.0.33f1\Editor\Unity.exe" />
+      <option name="EXE_PATH" value="H:\Program Files\Unity\6000.0.33f1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath &quot;D:\Users\Mitchel\GitHub Repositories\Unity-Testing-Repo&quot; -testResults Logs/results.xml -testPlatform EditMode -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="D:\Users\Mitchel\GitHub Repositories\Unity-Testing-Repo" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -131,6 +136,9 @@
       <workItem from="1740040512436" duration="3021000" />
       <workItem from="1744819163366" duration="715000" />
       <workItem from="1744887630323" duration="1523000" />
+      <workItem from="1744893988900" duration="5566000" />
+      <workItem from="1745129538396" duration="1472000" />
+      <workItem from="1745248737392" duration="1131000" />
     </task>
     <servers />
   </component>

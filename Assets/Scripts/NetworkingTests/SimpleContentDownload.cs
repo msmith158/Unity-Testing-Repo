@@ -13,16 +13,17 @@ namespace Mitchel.Networking
         [SerializeField] private string imageURL;
         [SerializeField] private Image targetImage;
         [SerializeField] private TextMeshProUGUI screenText;
+        [HideInInspector] public bool Success = false;
         private float totalTime = 0;
         private Coroutine downloadCoroutine;
         private Coroutine timerCoroutine;
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Start()
+        /*void Start()
         {
             screenText.text = "/// NETWORK IMAGE DOWNLOAD DEMONSTRATION ///\n";
             DownloadImage(imageURL);
-        }
+        }*/
 
         public void DownloadImage(string url)
         {
@@ -65,7 +66,7 @@ namespace Mitchel.Networking
             // Check if the request is finished, and if so, assign it to the target
             if (request.result != UnityWebRequest.Result.Success)
             {
-                Debug.LogError($"Image download failed. Details: {request.error}\n");
+                screenText.text += $"Image download failed. Details: {request.error}\n";
             }
             else
             {
@@ -76,6 +77,7 @@ namespace Mitchel.Networking
 
                 StopCoroutine(timerCoroutine);
                 screenText.text += $"Image download task completed in {totalTime} seconds.\n";
+                Success = true;
             }
 
             downloadCoroutine = null;
