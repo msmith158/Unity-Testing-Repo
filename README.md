@@ -1,7 +1,7 @@
 # Mitchel's Unity Testing Repository
 This is a repository for creating and testing things in Unity, such as game mechanics.
 ## Requirements
-This project requires **Unity 2022.3.38f1** to open.
+This project requires **Unity 6000.1.2f1** to open.
 ## Statistics
 This testing repository contains the following:
 <br>
