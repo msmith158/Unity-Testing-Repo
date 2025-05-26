@@ -6,13 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="6eb8171d-73ca-48b9-8b45-c26631d2f8fc" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Unity-Testing-Repo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Unity-Testing-Repo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Mesh/Unwrapped_Earth_Spirit.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mesh/Unwrapped_Earth_Spirit.fbx.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/ModelTesting.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/ModelTesting.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/NetworkingTesting.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/NetworkingTesting.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/NetworkingTests/SimpleContentDownload.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/NetworkingTests/SimpleContentDownload.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/NetworkingTests/SimpleTextDownloader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/NetworkingTests/SimpleTextDownloader.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,6 +135,7 @@
       <workItem from="1744893988900" duration="5566000" />
       <workItem from="1745129538396" duration="1472000" />
       <workItem from="1745248737392" duration="1131000" />
+      <workItem from="1745420700350" duration="1028000" />
     </task>
     <servers />
   </component>

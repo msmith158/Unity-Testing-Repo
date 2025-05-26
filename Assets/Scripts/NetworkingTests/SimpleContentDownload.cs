@@ -13,17 +13,21 @@ namespace Mitchel.Networking
         [SerializeField] private string imageURL;
         [SerializeField] private Image targetImage;
         [SerializeField] private TextMeshProUGUI screenText;
+        [SerializeField] private bool runAtStart;
         [HideInInspector] public bool Success = false;
         private float totalTime = 0;
         private Coroutine downloadCoroutine;
         private Coroutine timerCoroutine;
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
-        /*void Start()
+        void Start()
         {
-            screenText.text = "/// NETWORK IMAGE DOWNLOAD DEMONSTRATION ///\n";
-            DownloadImage(imageURL);
-        }*/
+            if (runAtStart)
+            {
+                screenText.text = "/// NETWORK IMAGE DOWNLOAD DEMONSTRATION ///\n";
+                DownloadImage(imageURL);
+            }
+        }
 
         public void DownloadImage(string url)
         {

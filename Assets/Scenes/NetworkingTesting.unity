@@ -355,7 +355,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 393407116}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ebca8457af3a80443a7dd3174015516f, type: 3}
   m_Name: 
@@ -363,6 +363,7 @@ MonoBehaviour:
   imageURL: https://www.coralcmd.net/img/clownfish.jpg
   targetImage: {fileID: 221575600}
   screenText: {fileID: 1316699372}
+  runAtStart: 0
   Success: 0
 --- !u!114 &393407120
 MonoBehaviour:
@@ -371,13 +372,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 393407116}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 72df978dd063c0a4da9252d50c4835e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   textAssetURL: https://bush.coralcmd.net/other-stuff/content/james.txt
   screenText: {fileID: 1316699372}
+  runAtStart: 0
   Success: 0
 --- !u!114 &393407121
 MonoBehaviour:

@@ -7,14 +7,19 @@ public class SimpleTextDownloader : MonoBehaviour
 {
     [SerializeField] private string textAssetURL;
     [SerializeField] private TextMeshProUGUI screenText;
+    [SerializeField] private bool runAtStart;
     [HideInInspector] public bool Success = false;
     private Coroutine downloadCoroutine;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    /*void Start()
+    void Start()
     {
-        DownloadTextAsset(textAssetURL);
-    }*/
+        if (runAtStart)
+        {
+            screenText.text = "/// NETWORK TEXT ASSET DOWNLOAD DEMONSTRATION ///\n";
+            DownloadTextAsset(textAssetURL);
+        }
+    }
 
     public void DownloadTextAsset(string url)
     {
