@@ -20,7 +20,7 @@ using UnityEngine;
 using Image = UnityEngine.UI.Image;
 using Random = UnityEngine.Random;
 
-namespace Mitchel.UISystems
+namespace Mitchel.UI
 {
     public class DialogueSystem : MonoBehaviour
     {

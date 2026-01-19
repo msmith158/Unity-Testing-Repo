@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class Controller : MonoBehaviour
 {
-    [SerializeField] private Mitchel.UISystems.DialogueSystem dialogueSystem;
+    [SerializeField] private Mitchel.UI.DialogueSystem dialogueSystem;
     void Update()
     {
         var gamepad = Gamepad.current; // Get the currently connected gamepad
